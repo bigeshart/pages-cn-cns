@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轻量导航 · 雨燕直播</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f7f5f0;
+      font-family: system-ui, "Noto Serif SC", Georgia, "Times New Roman", serif;
+      color: #2c2b28;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fefcf8;
+      padding: 2.8rem 2rem;
+      border-radius: 28px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+    }
+
+    /* 顶部导航（轻量） */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #e2ddd6;
+      margin-bottom: 2.8rem;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .brand {
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      font-size: 1.2rem;
+      color: #3a3834;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #6b6760;
+      font-size: 0.95rem;
+      font-weight: 400;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1f1e1b;
+      border-bottom-color: #b3a89b;
+    }
+
+    /* 核心介绍 */
+    .hero {
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      color: #1f1e1b;
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #4a4742;
+      max-width: 640px;
+    }
+
+    /* 引用块 / 提示框 */
+    .notice {
+      background: #f3efe8;
+      border-left: 4px solid #b3a89b;
+      padding: 1.2rem 1.6rem;
+      border-radius: 0 12px 12px 0;
+      margin: 2rem 0 2.8rem 0;
+      font-size: 0.95rem;
+      color: #3e3b36;
+    }
+
+    .notice strong {
+      font-weight: 500;
+      color: #1f1e1b;
+    }
+
+    /* 三个场景模块 */
+    .scenes {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .scene-item {
+      background: #faf8f5;
+      padding: 1.6rem 1.8rem;
+      border-radius: 20px;
+      transition: background 0.2s;
+      border: 1px solid #eae6df;
+    }
+
+    .scene-item:hover {
+      background: #f6f2ec;
+    }
+
+    .scene-item h3 {
+      font-size: 1.2rem;
+      font-weight: 480;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.6rem;
+      color: #2c2b28;
+    }
+
+    .scene-item p {
+      color: #55524c;
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .scene-item .tag {
+      display: inline-block;
+      background: #e2ddd6;
+      color: #3a3834;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.8rem;
+      border-radius: 30px;
+      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* 常见说明 (FAQ 摘要) */
+    .faq-summary {
+      margin-top: 1rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #e2ddd6;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.3rem;
+      font-weight: 450;
+      margin-bottom: 1.2rem;
+      color: #1f1e1b;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item .question {
+      font-weight: 500;
+      color: #2c2b28;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-item .answer {
+      color: #55524c;
+      font-size: 0.95rem;
+      padding-left: 0.4rem;
+    }
+
+    .faq-item .answer a {
+      color: #5a5349;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #c2b9ad;
+    }
+
+    .faq-item .answer a:hover {
+      color: #1f1e1b;
+      text-decoration-color: #1f1e1b;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      font-size: 0.85rem;
+      color: #8a857c;
+      border-top: 1px solid #eae6df;
+      text-align: left;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .page {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .scene-item {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="brand">· 短叙</span>
+    <div class="nav-links">
+      <a href="#">简述</a>
+      <a href="#">场景</a>
+      <a href="#">备忘</a>
+    </div>
+  </nav>
+
+  <!-- 核心介绍 -->
+  <div class="hero">
+    <h1>看比赛，也是看日常</h1>
+    <p>
+      有些人打开直播是为了不错过关键比分，另一些人只是习惯了某个时段的陪伴。  
+      从体育赛事到生活闲谈，画面背后的节奏和温度，往往比结果更持久。
+    </p>
+  </div>
+
+  <!-- 引用块 / 提示框 -->
+  <div class="notice">
+    <strong>一点观察：</strong> 很多时候我们需要的不是“更多内容”，而是刚好能融入当前状态的一段画面。  
+    <a href="https://cn-cns-yuyan.com" style="color:#5a5349; text-decoration: underline; text-underline-offset:2px;">雨燕直播</a> 给人的印象，恰好是这种不喧闹的在场感。
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="scenes">
+    <div class="scene-item">
+      <h3>傍晚的赛事</h3>
+      <p>结束一天的事情后，打开一个稳定的信号源，跟着解说词放空一会儿。输赢没那么重要，声音和画面成了背景的一部分。</p>
+      <span class="tag">体育 · 实况</span>
+    </div>
+    <div class="scene-item">
+      <h3>资讯与闲聊</h3>
+      <p>有些直播间的魅力不在内容多精致，而在于弹幕和主播之间的缝隙——那些随意接话、冷场又回暖的瞬间，像极了朋友聚会。</p>
+      <span class="tag">日常 · 轻互动</span>
+    </div>
+    <div class="scene-item">
+      <h3>深夜的存档感</h3>
+      <p>重播、集锦、或者只是开着某个频道当白噪音。深夜的直播有一种特殊的存档感，像是把今天最后一点注意力交给屏幕。</p>
+      <span class="tag">回看 · 陪伴</span>
+    </div>
+  </div>
+
+  <!-- 常见说明 (FAQ 摘要) -->
+  <div class="faq-summary">
+    <h2>几个常见疑问</h2>
+
+    <div class="faq-item">
+      <div class="question">Q: 这个站点主要提供什么？</div>
+      <div class="answer">
+        A: 它更像一个聚合式的观看入口，围绕体育、赛事以及部分生活向内容。你可以把它理解为一个目录或索引，指向不同的直播间和实时画面。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">Q: 是否需要注册或付费？</div>
+      <div class="answer">
+        A: 通常不需要。大多数页面直接打开即可观看，部分功能可能基于浏览器环境。具体以实际页面说明为准。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">Q: 画质和延迟怎么样？</div>
+      <div class="answer">
+        A: 和信号源以及网络环境有关。一般稳定源可以满足常规观赛需求，如果遇到卡顿可以尝试切换线路或刷新。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">Q: 有推荐的开始方式吗？</div>
+      <div class="answer">
+        直接打开 <a href="https://cn-cns-yuyan.com">雨燕直播</a>，从列表里选一个感兴趣的标题点进去就好。不用想太多，画面出来之后自然就知道喜不喜欢。
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <span>只是一些关于直播习惯的记录 · 内容来源均为公开站点</span>
+  </div>
+</div>
+</body>
+</html>
